@@ -10,7 +10,7 @@ interface HomeProps {
     title: string;
 }
 
-const Home: FC<HomeProps> = () => {
+const Home: FC<HomeProps> = ({ title }) => {
     const navigate = useNavigate();
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
