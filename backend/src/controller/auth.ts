@@ -66,7 +66,7 @@ router.post("/signup", doubleCsrfProtection,
             const token = jwt.sign(
                 { userId: newUser.id, role: newUser.role },
                 process.env.TOKEN as string,
-                { expiresIn: "1h" }
+                { expiresIn: "7d" }
             );
 
             res.cookie("token", token, {
@@ -117,7 +117,7 @@ router.post("/login", doubleCsrfProtection,
             const token = jwt.sign(
                 { id: user.id, role: user.role },
                 process.env.TOKEN as string,
-                { expiresIn: "1h" }
+                { expiresIn: "7d" }
             );
 
             res.cookie("token", token, {
