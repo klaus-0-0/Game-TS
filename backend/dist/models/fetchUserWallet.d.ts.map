@@ -1,0 +1,1 @@
+{"version":3,"file":"fetchUserWallet.d.ts","sourceRoot":"","sources":["../../src/models/fetchUserWallet.ts"],"names":[],"mappings":"AAEA,eAAO,MAAM,aAAa,GAAU,QAAQ,MAAM,oBAiBjD,CAAC;AAEF,eAAO,MAAM,gBAAgB,GAAU,QAAQ,MAAM,EAAE,YAAY,MAAM,kBAWxE,CAAA;AAED,eAAO,MAAM,qBAAqB,GAAU,QAAQ,MAAM,EAAE,UAAU,GAAG;;;;;;;;;;;;;EAsBxE,CAAA"}

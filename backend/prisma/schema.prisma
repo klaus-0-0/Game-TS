@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum GameStatus {
+  ACTIVE
+  LOST
+  WON
+  CASHED_OUT
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  email    String @unique
+  password String
+  wallet   Float  @default(5000.00)
+  role     Role   @default(USER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  diamondGames Game_Diamond_History[]
+}
+
+model Game_Diamond_History {
+  id           String   @id @default(uuid())
+  userId       String
+  gameId       String   @unique
+  mines        Int[]
+  minesCount   Int
+  stake        Float // Use Float for money
+  clickedTiles Int[]
+  status       GameStatus // 'active', 'lost', 'won', 'cashed_out'
+  balance      Float
+  potentialWin Float
+  winAmount    Float    @default(0)
+  createdAt    DateTime @default(now())
+
+  // Relation
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // if user deleted all related tables will be delete automatically
+
+  // Indexes for fast queries
+  @@index([userId]) // Z-A, 9-0, new-old// Z-A, 9-0, new-old it maps through data like this dosent sort data 
+  @@index([createdAt])
+  @@index([status])
+}
