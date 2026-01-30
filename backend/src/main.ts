@@ -1,4 +1,4 @@
-import type{ Request, Response } from "express";
+import type { Request, Response } from "express";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -7,6 +7,7 @@ import http from "http";
 // Routes
 import RegisterRoutes from "./controller/auth.js";
 import diamondRoutes from "./controller/diamondGameRoute.js";
+import path from "path";
 
 // Socket setup
 // import { createSocketServer } from "./src/socket/socketServer";
@@ -25,6 +26,14 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle SPA routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // Routes
 app.use("/api", RegisterRoutes);
