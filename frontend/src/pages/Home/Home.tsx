@@ -105,7 +105,6 @@ const Home: FC<HomeProps> = ({ title }) => {
                 </button>
 
                 <h1 className="text-2xl font-extrabold text-white">GameOn</h1>
-
                 <div className="flex-1 flex justify-center">
                     <input
                         type="text"
@@ -195,6 +194,7 @@ const Home: FC<HomeProps> = ({ title }) => {
                         <div className="p-2 text-center font-medium w-32 mt-2 text-white">
                             {game.title}
                         </div>
+                        <h1 className="hidden">{title}</h1>  {/* Use it somewhere */}
                     </div>
                 ))}
             </div>
