@@ -7,7 +7,7 @@ interface AppConfig {
 }
 
 const config: AppConfig = {
-    apiUrl: 'http://localhost:3000/api',
+    apiUrl: 'https://game-backend-dr99.onrender.com/api',
 };
 
 export default config;
