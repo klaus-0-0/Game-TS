@@ -195,6 +195,7 @@ const Home: FC<HomeProps> = ({ title }) => {
                         <div className="p-2 text-center font-medium w-32 mt-2 text-white">
                             {game.title}
                         </div>
+                        <h1 className="hidden">{title}</h1>  {/* Use it somewhere */}
                     </div>
                 ))}
             </div>
