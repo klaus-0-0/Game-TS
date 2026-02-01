@@ -6,11 +6,11 @@ import { useState } from "react";
 import type { FC } from "react"
 
 // Define TypeScript interfaces for props (if any i future )
-interface HomeProps {
-    title: string;
-}
+// interface HomeProps {
+//     title: string;
+// }
 
-const Home: FC<HomeProps> = ({ title }) => {
+const Home: FC<HomeProps> = () => {
     const navigate = useNavigate();
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
@@ -194,7 +194,7 @@ const Home: FC<HomeProps> = ({ title }) => {
                         <div className="p-2 text-center font-medium w-32 mt-2 text-white">
                             {game.title}
                         </div>
-                        <h1 className="hidden">{title}</h1>  {/* Use it somewhere */}
+                        {/* <h1 className="hidden">{title}</h1>  {/* Use it somewhere */} */}
                     </div>
                 ))}
             </div>
