@@ -7,6 +7,17 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
-    allowedHosts: ['frontend-wr1l.onrender.com'], 
+    allowedHosts: ['stake-swlk.onrender.com'],
+
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Fix SPA routing - redirect ALL paths to index.html
+        manualChunks: undefined,
+      },
+    },
+  },
+  // CRITICAL: Base path for sub-routes (Render Static Site)
+  base: '/',
 })
