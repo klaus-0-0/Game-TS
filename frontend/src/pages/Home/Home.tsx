@@ -10,7 +10,7 @@ import type { FC } from "react"
 //     title: string;
 // }
 
-const Home: FC<HomeProps> = () => {
+const Home: FC = () => {
     const navigate = useNavigate();
     const [sideBar, setSideBar] = useState<boolean>(true);
     const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
@@ -194,7 +194,6 @@ const Home: FC<HomeProps> = () => {
                         <div className="p-2 text-center font-medium w-32 mt-2 text-white">
                             {game.title}
                         </div>
-                        {/* <h1 className="hidden">{title}</h1>  {/* Use it somewhere */} */}
                     </div>
                 ))}
             </div>
