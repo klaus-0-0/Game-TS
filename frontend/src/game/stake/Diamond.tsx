@@ -147,7 +147,7 @@ const Diamond: FC = () => {
         `${config.apiUrl}/diamond/userdata`,
         {
           headers: {
-            "X-CSRF-Token": csrfToken,
+            "x-csrf-token": csrfToken,
             "Content-Type": "application/json"
           },
           withCredentials: true
