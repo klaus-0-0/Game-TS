@@ -123,7 +123,7 @@ router.post("/login", doubleCsrfProtection,
             }
 
             const token = jwt.sign(
-                { userId: newUser.id, role: newUser.role },
+                { userId: user.id, role: user.role },
                 process.env.TOKEN as string,
                 { expiresIn: "7d" }
             );
