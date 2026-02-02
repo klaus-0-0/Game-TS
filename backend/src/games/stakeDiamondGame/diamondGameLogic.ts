@@ -81,6 +81,7 @@ const totalTiles = 25;
 const userdata = async (req: AuthRequest, res: Response): Promise<Response> => {
     try {
         // Assuming you have userId in request (from auth middleware)
+        //  const { userId } = req.body;
         const userId = req.user?.id; // ✅ correct
         console.log("userid", userId);
         console.log("🔍 ALL COOKIES:", JSON.stringify(req.cookies));
@@ -113,6 +114,7 @@ const userdata = async (req: AuthRequest, res: Response): Promise<Response> => {
 
 const createGame = async (req: AuthRequest, res: Response): Promise<Response | void> => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
 
@@ -161,6 +163,7 @@ const createGame = async (req: AuthRequest, res: Response): Promise<Response | v
 
 const clickTile = async (req: AuthRequest, res: Response): Promise<Response | void> => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
         if (!userId) {
@@ -259,6 +262,7 @@ const clickTile = async (req: AuthRequest, res: Response): Promise<Response | vo
 
 const cashOut = async (req: AuthRequest, res: Response): Promise<Response> => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
         if (!userId) {
