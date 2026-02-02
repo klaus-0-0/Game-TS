@@ -79,7 +79,7 @@ router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
             res.cookie("token", token, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "lax",
+                sameSite: "none",
                 maxAge: 5 * 60 * 60 * 1000,
             });
 
@@ -129,7 +129,7 @@ router.post("/login", doubleCsrfProtection,
 
             res.cookie("token", token, {
                 httpOnly: true,
-                sameSite: "lax",
+                sameSite: "none",
                 secure: true,
                 maxAge: 5 * 60 * 60 * 1000,
             });
