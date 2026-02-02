@@ -80,6 +80,7 @@ router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
                 httpOnly: true,
                 secure: true,
                 sameSite: "none",
+                partitioned: true, 
                 maxAge: 5 * 60 * 60 * 1000,
             });
 
