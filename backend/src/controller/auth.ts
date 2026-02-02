@@ -123,15 +123,16 @@ router.post("/login", doubleCsrfProtection,
             }
 
             const token = jwt.sign(
-                { id: user.id, role: user.role },
+                { userId: newUser.id, role: newUser.role },
                 process.env.TOKEN as string,
                 { expiresIn: "7d" }
             );
 
             res.cookie("token", token, {
                 httpOnly: true,
-                sameSite: "none",
                 secure: true,
+                sameSite: "none",
+                partitioned: true, 
                 maxAge: 5 * 60 * 60 * 1000,
             });
 
