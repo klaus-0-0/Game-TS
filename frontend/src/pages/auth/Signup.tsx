@@ -65,7 +65,10 @@ const Signup: FC = () => {
     const fetchCsrfToken = async (): Promise<void> => {
       try {
         const res: AxiosResponse<CsrfTokenResponse> = await axios.get(
-          `${config.apiUrl}/csrf-token`
+          `${config.apiUrl}/csrf-token`,
+          { 
+            withCredentials: true
+          }
         );
         setCsrfToken(res.data.csrfToken);
       } catch (error) {
