@@ -70,7 +70,7 @@ router.post("/signup", doubleCsrfProtection,
             );
 
             res.cookie("token", token, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: true,
                 sameSite: "none",
                 maxAge: 5 * 60 * 60 * 1000,
