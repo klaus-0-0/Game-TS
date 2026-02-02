@@ -31,9 +31,16 @@ router.get("/csrf-token", (req: Request, res: Response) => {
 
 /* ------------------ SIGNUP ------------------ */
 
-router.post("/signup", doubleCsrfProtection,
-    async (req: Request, res: Response) => {
-        const parsed = signupSchema.safeParse(req.body);
+router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
+    console.log("=== CSRF DEBUG ===");
+    console.log("Cookie _csrf:", req.cookies?._csrf);
+    console.log("Header x-csrf-token:", req.headers["x-csrf-token"]);
+    console.log("Header X-CSRF-Token:", req.headers["X-CSRF-Token"]);
+    console.log("Body:", req.body);
+    console.log("==================");
+    next();
+}, doubleCsrfProtection, async (req: Request, res: Response) => {
+    const parsed = signupSchema.safeParse(req.body);
 
         if (!parsed.success) {
             return res.status(400).json({
