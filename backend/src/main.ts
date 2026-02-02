@@ -18,7 +18,7 @@ const port = 3000;
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://stake-swlk.onrender.com",
     credentials: true,
   })
 );
