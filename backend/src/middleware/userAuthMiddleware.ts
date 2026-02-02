@@ -12,6 +12,7 @@ export const authMiddleware = (
     next: NextFunction
 ) => {
     const token = req.cookies?.token;
+    console.log("token middleware :", token);
     if (!token) return res.status(401).json({ message: "Unauthorized" });
 
     try {
