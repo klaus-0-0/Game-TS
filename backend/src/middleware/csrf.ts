@@ -19,9 +19,11 @@ export const {
   cookieName: "_csrf",
 
   cookieOptions: {
-    httpOnly: false,
-    sameSite: "none",
-    secure: true,
+    httpOnly: true,                     // Must be false for JS access
+    sameSite: "none",                   // Cross-site (frontend ≠ backend)
+    secure: true,                       // HTTPS required on Render
+    partitioned: true,                  // This fixes your cookie transmission
+    maxAge: 24 * 60 * 60 * 1000,        // 24h expiry
   },
 
   size: 64,
