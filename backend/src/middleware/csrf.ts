@@ -19,7 +19,7 @@ export const {
   cookieName: "_csrf",
 
   cookieOptions: {
-    httpOnly: true,
+    httpOnly: false,
     sameSite: "none",
     secure: true,
   },
