@@ -83,6 +83,9 @@ const userdata = async (req: AuthRequest, res: Response): Promise<Response> => {
         // Assuming you have userId in request (from auth middleware)
         const userId = req.user?.id; // ✅ correct
         console.log("userid", userId);
+        console.log("🔍 ALL COOKIES:", JSON.stringify(req.cookies));
+        console.log("🔍 TOKEN:", req.cookies.token ? "FOUND" : "MISSING");
+        console.log("🔍 COOKIE KEYS:", Object.keys(req.cookies));
 
         if (!userId) {
             return res.status(401).json({ message: "Unauthorized" });
