@@ -20,7 +20,7 @@ export const {
 
   cookieOptions: {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
     secure: true,
   },
 
