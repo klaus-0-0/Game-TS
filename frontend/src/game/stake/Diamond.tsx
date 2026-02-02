@@ -99,7 +99,10 @@ const Diamond: FC = () => {
     const fetchCsrfToken = async (): Promise<void> => {
       try {
         const res: AxiosResponse<CsrfTokenResponse> = await axios.get(
-          `${config.apiUrl}/csrf-token`
+          `${config.apiUrl}/csrf-token`,
+          {
+             withCredentials: true
+          }
         );
         const token = res.data.csrfToken;
         setCsrfToken(token);
@@ -150,7 +153,7 @@ const Diamond: FC = () => {
           withCredentials: true
         },
       );
-      // console.log("fetch userdata ", res.data);
+      console.log("fetch userdata ", res.data);
       setGameId(res.data.gameId);
       setWallet(res.data.wallet);
       setTotalTiles(res.data.totalTiles);
