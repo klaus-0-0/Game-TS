@@ -17,9 +17,15 @@ export const authMiddleware = (
 
     try {
         const secret = process.env.TOKEN!;
-        const decoded = jwt.verify(token, secret) as { id: string; role: string };
-        console.log("decode =", decoded);
-        req.user = decoded;
+        const decoded = jwt.verify(token, secret) as {
+  userId: string;
+  role: string;
+};
+
+req.user = {
+  id: decoded.userId,
+  role: decoded.role,
+};
         next();
     } catch {
         return res.status(401).json({ message: "Invalid token" });
