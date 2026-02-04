@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import rock from "../../assets/gameLogo/rock.png";
 import seventeen from "../../assets/gameLogo/seventeen.jpg";
 import diamond from "../../assets/diamond/g-d-wall.jpg";
+import gameLogo from "../../assets/gameLogo/game2.png"
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -74,20 +75,17 @@ const Home: FC = () => {
     setExpandSidebar(false);
   };
 
-  const handleOverlayClick = (): void => {
-    setSideBar(false);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-linear-to-b from-gray-950 to-gray-900">
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 p-4 bg-gray-700 flex flex-wrap items-center gap-4">
+      <nav className="sticky top-0 z-50 p-1 bg-gray-800 flex flex-wrap items-center gap-4">
         <button
-          className="bg-blue-300 p-2 w-12 rounded-lg hover:bg-blue-400 transition-colors"
+          className="text-white text-4xl p-2 w-12 rounded-lg hover:text-gray-400 transition-colors cursor-pointer"
           onClick={handleSidebarToggle}
         >
           ☰
         </button>
+        <img src={gameLogo} className="w-16 h-16"></img>
 
         <h1 className="text-xl sm:text-2xl font-extrabold text-white">
           GameOn
@@ -96,13 +94,13 @@ const Home: FC = () => {
         <div className="flex-1 flex justify-center w-full md:w-auto">
           <input
             type="text"
-            placeholder="Search..."
-            className="rounded-xl px-4 py-2 w-full md:w-96 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search games..."
+            className="rounded-full px-4 py-2 w-full md:w-96 border focus:outline-none focus:ring-1 focus:ring-purple-600 text-white"
           />
         </div>
 
         <button
-          className="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-3xl transition-colors"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-3xl transition-colors cursor-pointer"
           onClick={handleSignout}
         >
           Signout
