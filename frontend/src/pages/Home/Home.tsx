@@ -90,15 +90,7 @@ const Home: FC = () => {
         <h1 className="text-xl sm:text-2xl font-extrabold text-white">
           GameOn
         </h1>
-
-        <div className="flex-1 flex justify-center w-full md:w-auto">
-          <input
-            type="text"
-            placeholder="Search games..."
-            className="rounded-full px-4 py-2 w-full md:w-96 border focus:outline-none focus:ring-1 focus:ring-purple-600 text-white"
-          />
-        </div>
-
+        <div className="flex-1"></div>
         <button
           className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-3xl transition-colors cursor-pointer"
           onClick={handleSignout}
@@ -106,6 +98,14 @@ const Home: FC = () => {
           Signout
         </button>
       </nav>
+      
+      <div className="flex justify-center w-full mt-3 md:w-auto">
+        <input
+          type="text"
+          placeholder="Search games..."
+          className="rounded-full px-4 py-2 w-full md:w-96 border focus:outline-none focus:ring-1 focus:ring-purple-600 text-white"
+        />
+      </div>
 
       {/* SIDEBAR */}
       {sideBar && (
@@ -120,7 +120,7 @@ const Home: FC = () => {
             {sidebarItems.map((item) => (
               <button
                 key={item.label}
-                className={`flex items-center w-full p-3 text-white hover:bg-gray-700 rounded-lg transition-all
+                className={`flex items-center w-full p-3 text-white hover:bg-gray-900 hover:text-gray-300 rounded-lg cursor-pointer transition-transform duration-300 hover:scale-90
                 ${expandSidebar ? "justify-start" : "justify-center"}`}
               >
                 <span className="text-xl min-w-6">{item.icon}</span>
@@ -145,9 +145,9 @@ const Home: FC = () => {
               border-2 group hover:scale-105 transition-all duration-300
               rounded-lg shadow-md overflow-hidden cursor-pointer
               ${game.disabled
-                ? "bg-gray-300 border-gray-400 cursor-not-allowed"
-                : "bg-gray-800 border-gray-300 hover:border-blue-500"
-              }`}
+                  ? "bg-gray-300 border-gray-400 cursor-not-allowed"
+                  : "bg-gray-800 border-gray-300 hover:border-blue-500"
+                }`}
               onClick={() => handleGameNavigation(game.route)}
               disabled={game.disabled}
             >
