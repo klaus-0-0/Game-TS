@@ -138,14 +138,6 @@ const Home: FC = () => {
         </div>
       )}
 
-      {/* OVERLAY (mobile) */}
-      {sideBar && (
-        <div
-          className="fixed inset-0 bg-transparent z-30 sm:hidden"
-          onClick={handleOverlayClick}
-        />
-      )}
-
       {/* GAME GRID */}
       <div className="flex gap-6 sm:gap-8 md:gap-10 flex-wrap justify-center p-4 sm:p-6 md:p-10">
         {gameItems.map((game) => (
