@@ -361,7 +361,6 @@ useEffect(() => {
     //finalaccount
     const saveGameDataTo_Redis = async () => {
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const res: AxiosResponse<SaveGameData> = await axios.post(`${config.apiUrl}/chips-bomb/post-gamedata`,
                 {
                     myTiles, selectBomb: selectBomb, roomId, currentTurn, stake, status: gameStatus, finalAmount: winning
@@ -374,7 +373,7 @@ useEffect(() => {
                     withCredentials: true
                 },
             )
-            // console.log("res: ", res);
+            console.log("res: ", res);
         } catch (error) {
             const err = error as AxiosError<{ message?: string }>
             console.error("failsed to save gamedata", err);
