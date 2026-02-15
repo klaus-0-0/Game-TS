@@ -12,7 +12,11 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import config from "../../config";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://game-backend-dr99.onrender.com", {
+  transports: ["websocket"],
+  withCredentials: true,
+});
+
 
 
 interface CsrfTokenResponse {
@@ -191,13 +195,7 @@ function ChipsAndBomb() {
         socket.on("invalid-move", msg => {
             console.warn(msg);
         });
-
-        socket.emit("player-move", {
-            roomId,
-            userId,
-            currentTurn: currentTurn
-        });
-
+        
         socket.on("game-status", (winOrLoose) => {
             setWinOrLoose(winOrLoose);
             setGameActive(true);
@@ -214,6 +212,15 @@ function ChipsAndBomb() {
             socket.off("invalid-move");
         };
     }, []);
+
+useEffect(() => {
+  if (!roomId || !userId || !currentTurn) return; 
+  socket.emit("player-move", {
+    roomId,
+    userId,
+    currentTurn,
+  });
+}, [roomId, userId, currentTurn]);
 
     useEffect(() => {
         socket.on("toss-result", (firstPlayer) => {
@@ -346,6 +353,7 @@ function ChipsAndBomb() {
     };
 
     const handleReady = () => {
+         if (!userId) return;
         setSearchPlayer(true);
         socket.emit("Ready", userId);
         return socket.off("Ready");
