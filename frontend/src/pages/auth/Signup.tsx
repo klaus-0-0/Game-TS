@@ -3,7 +3,7 @@ import type { FC, ChangeEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import type{ AxiosError, AxiosResponse } from "axios";
 import axios from "axios";
-import wall from "../../assets/auth/SignBI.png";
+import wall from "../../assets/auth/SignBI.jpg";
 import config from "../../config";
 
 // TypeScript interfaces
@@ -202,7 +202,7 @@ const Signup: FC = () => {
             {isLoading ? "Processing..." : "Sign up"}
           </button>
           <button
-            className="bg-white hover:bg-cyan-700 text-black border border-black py-1 px-2 md:py-2 md:px-4 rounded font-medium text-sm md:text-base transition cursor-pointer hover:text-white"
+            className="bg-white hover:bg-cyan-700 text-black border border-b-white py-1 px-2 md:py-2 md:px-4 rounded font-medium text-sm md:text-base transition cursor-pointer hover:text-white"
             onClick={() => handleNavigation("/login")}
           >
             Log in
@@ -212,10 +212,10 @@ const Signup: FC = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center lg:justify-start p-4 relative z-10">
-        <div className="w-full max-w-md lg:ml-80 bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+        <div className="w-full max-w-md lg:ml-80 bg-transparent bg-opacity-90 p-6 rounded-lg shadow-lg">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800">Create Account</h2>
-            <p className="text-gray-600 mt-2">Welcome to our platform</p>
+            <h2 className="text-3xl font-bold text-gray-300">Create Account</h2>
+            <p className="text-gray-400 mt-2">Welcome to our platform</p>
           </div>
 
           {/* Error Message */}
@@ -229,7 +229,7 @@ const Signup: FC = () => {
             <input
               type="text"
               name="username"
-              className="w-full border border-black rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full border border-b-white text-white rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
               placeholder="Username"
               value={formData.username}
               onChange={handleInputChange}
@@ -241,7 +241,7 @@ const Signup: FC = () => {
             <input
               type="email"
               name="email"
-              className="w-full border border-black rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full border border-b-white text-white rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
               placeholder="Enter email"
               value={formData.email}
               onChange={handleInputChange}
@@ -253,7 +253,7 @@ const Signup: FC = () => {
             <input
               type="password"
               name="password"
-              className="w-full border border-black rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              className="w-full border border-b-white text-white rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500"
               placeholder="Create a password (min. 6 characters)"
               value={formData.password}
               onChange={handleInputChange}
@@ -262,22 +262,22 @@ const Signup: FC = () => {
               minLength={6}
               required
             />
-
+{/* 
             <select
               name="role"
               value={formData.role}
               onChange={handleInputChange}
-              className="w-full border border-black rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white"
+              className="w-full border border-b-white text-white rounded p-2 focus:outline-none focus:ring-1 focus:ring-cyan-500 bg-white"
               disabled={isLoading}
             >
               <option value="USER">User</option>
               <option value="ADMIN">Admin</option>
-            </select>
+            </select> */}
 
             <div className="flex justify-center pt-4 gap-4">
               <button
                 type="button"
-                className="w-50 bg-black hover:bg-cyan-700 text-white py-2 px-4 rounded font-medium transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-50 bg-gray-800 hover:bg-cyan-700 text-white py-2 px-4 rounded font-medium transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={handleSignup}
                 disabled={isLoading}
               >
@@ -285,7 +285,7 @@ const Signup: FC = () => {
               </button>
               <button
                 type="button"
-                className="w-50 bg-white hover:bg-cyan-700 text-black border border-black py-2 px-4 rounded font-medium transition cursor-pointer hover:text-white"
+                className="w-50 bg-white hover:bg-cyan-700 text-black border border-b-white py-2 px-4 rounded font-medium transition cursor-pointer hover:text-white"
                 onClick={() => handleNavigation("/login")}
                 disabled={isLoading}
               >
