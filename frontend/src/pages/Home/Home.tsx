@@ -2,7 +2,9 @@ import { useNavigate } from "react-router-dom";
 import rock from "../../assets/gameLogo/rock.png";
 import seventeen from "../../assets/gameLogo/seventeen.jpg";
 import diamond from "../../assets/diamond/g-d-wall.jpg";
-import gameLogo from "../../assets/gameLogo/game2.png"
+import gameLogo from "../../assets/gameLogo/game2.png";
+import chipsAndBombWall from "../../assets/chipandBomb/bombwall.png";
+
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -39,15 +41,25 @@ const Home: FC = () => {
       image: rock,
       title: "Rock Paper Scissors",
       route: "/RockGame",
+      disabled: true,
+      comingSoon: true
     },
     {
       id: 2,
-      image: seventeen,
-      title: "17 Patti",
-      route: "/SeventeenCards",
+      image: chipsAndBombWall,
+      title: "Chips & Bomb",
+      route: "/ChipsAndBomb",
     },
     {
       id: 3,
+      image: seventeen,
+      title: "17 Patti",
+      route: "/SeventeenCards",
+      disabled: true,
+      comingSoon: true
+    },
+    {
+      id: 4,
       image: diamond,
       title: "stake",
       route: "/diamond",
@@ -145,8 +157,8 @@ const Home: FC = () => {
               border-2 group hover:scale-105 transition-all duration-300
               rounded-lg shadow-md overflow-hidden cursor-pointer
               ${game.disabled
-                  ? "bg-gray-300 border-gray-400 cursor-not-allowed"
-                  : "bg-gray-800 border-gray-300 hover:border-blue-500"
+                  ? "bg-gray-900 border-gray-400 hover:border-purple-500"
+                  : "bg-gray-800 border-gray-300 hover:border-purple-500"
                 }`}
               onClick={() => handleGameNavigation(game.route)}
               disabled={game.disabled}
@@ -160,6 +172,7 @@ const Home: FC = () => {
 
             <div className="p-2 text-center font-medium w-28 sm:w-32 mt-2 text-white text-sm sm:text-base">
               {game.title}
+              {game.comingSoon ? <p className="text-cyan-700">cooming soon</p> : ""}
             </div>
           </div>
         ))}

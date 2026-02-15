@@ -3,6 +3,8 @@ import Home from "./pages/Home/Home"
 import Signup from "./pages/auth/Signup"
 import Login from "./pages/auth/Login"
 import Diamond from "./game/stake/Diamond"
+import ChipsAndBomb from "./game/rockPaperScessor/chipsAndBomb"
+
 function App() {
 
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="login" element={< Login/>} />
 
         <Route path="diamond" element={< Diamond/>} />
+        <Route path="ChipsAndBomb" element={< ChipsAndBomb/>} />
       </Routes>
     </Router>
   )
