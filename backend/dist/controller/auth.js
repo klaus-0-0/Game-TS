@@ -23,7 +23,15 @@ router.get("/csrf-token", (req, res) => {
     res.json({ csrfToken: token });
 });
 /* ------------------ SIGNUP ------------------ */
-router.post("/signup", doubleCsrfProtection, async (req, res) => {
+router.post("/signup", (req, res, next) => {
+    console.log("=== CSRF DEBUG ===");
+    console.log("Cookie _csrf:", req.cookies?._csrf);
+    console.log("Header x-csrf-token:", req.headers["x-csrf-token"]);
+    console.log("Header X-CSRF-Token:", req.headers["X-CSRF-Token"]);
+    console.log("Body:", req.body);
+    console.log("==================");
+    next();
+}, doubleCsrfProtection, async (req, res) => {
     const parsed = signupSchema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
@@ -47,12 +55,13 @@ router.post("/signup", doubleCsrfProtection, async (req, res) => {
                 role: role ?? "USER",
             },
         });
-        const token = jwt.sign({ userId: newUser.id, role: newUser.role }, process.env.TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ userId: newUser.id, role: newUser.role }, process.env.TOKEN, { expiresIn: "7d" });
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
-            maxAge: 5 * 60 * 60 * 1000,
+            sameSite: "none",
+            partitioned: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
         return res.status(201).json({
             message: "Signup successful",
@@ -81,11 +90,12 @@ router.post("/login", doubleCsrfProtection, async (req, res) => {
         if (!isValid) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.TOKEN, { expiresIn: "1h" });
+        const token = jwt.sign({ userId: user.id, role: user.role }, process.env.TOKEN, { expiresIn: "7d" });
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: "none",
             secure: true,
+            sameSite: "none",
+            partitioned: true,
             maxAge: 5 * 60 * 60 * 1000,
         });
         res.status(200).json({

@@ -1,0 +1,1 @@
+{"version":3,"file":"socketServer.d.ts","sourceRoot":"","sources":["../../src/socket/socketServer.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,EAAE,MAAM,WAAW,CAAC;AAEnC,iBAAS,kBAAkB,CAAC,UAAU,EAAE,GAAG,iIAU1C;AAED,OAAO,EAAE,kBAAkB,EAAE,CAAC"}

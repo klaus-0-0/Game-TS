@@ -52,8 +52,12 @@ const totalTiles = 25;
 const userdata = async (req, res) => {
     try {
         // Assuming you have userId in request (from auth middleware)
+        //  const { userId } = req.body;
         const userId = req.user?.id; // ✅ correct
         console.log("userid", userId);
+        console.log("🔍 ALL COOKIES:", JSON.stringify(req.cookies));
+        console.log("🔍 TOKEN:", req.cookies.token ? "FOUND" : "MISSING");
+        console.log("🔍 COOKIE KEYS:", Object.keys(req.cookies));
         if (!userId) {
             return res.status(401).json({ message: "Unauthorized" });
         }
@@ -76,6 +80,7 @@ const userdata = async (req, res) => {
 };
 const createGame = async (req, res) => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
         if (!userId) {
@@ -121,6 +126,7 @@ const createGame = async (req, res) => {
 };
 const clickTile = async (req, res) => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
         if (!userId) {
@@ -213,6 +219,7 @@ const clickTile = async (req, res) => {
 };
 const cashOut = async (req, res) => {
     try {
+        //  const { userId } = req.body;
         const userId = req.user?.id;
         console.log("userid", userId);
         if (!userId) {
