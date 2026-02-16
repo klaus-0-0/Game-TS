@@ -17,8 +17,6 @@ const socket = io("https://game-backend-dr99.onrender.com", {
   withCredentials: true,
 });
 
-
-
 interface CsrfTokenResponse {
     csrfToken: string;
 }
@@ -80,7 +78,17 @@ function ChipsAndBomb() {
     const bombAudio = useRef<HTMLAudioElement | null>(null);
     const tossAudio = useRef<HTMLAudioElement | null>(null);
     const clickAudio = useRef<HTMLAudioElement | null>(null);
+  
+      const preloadImages = () => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
 
+        img1.src = bombImg;
+        img2.src = chipsImg;
+        img3.src = coin;
+    };
+  
     // fetch user csrf token
     useEffect(() => {
         const fetchCsrfToken = async (): Promise<void> => {
@@ -128,7 +136,8 @@ function ChipsAndBomb() {
         bombAudio.current = new Audio(bombSound);
         tossAudio.current = new Audio(tossSound);
         clickAudio.current = new Audio(selectSound);
-
+        // loading images 
+        preloadImages();
         // Cleanup
         return () => {
             chipsAudio.current = null;
