@@ -72,6 +72,14 @@ const Diamond: FC = () => {
   const looseAudio = useRef<HTMLAudioElement | null>(null);
   const winAudio = useRef<HTMLAudioElement | null>(null);
 
+    const preloadImages = () => {
+    const img1 = new Image();
+    const img2 = new Image();
+
+    img1.src = r_D;
+    img2.src = g_D;
+  };
+
   // components rendering permissions
   const showResetButton = useRef<boolean>(true);
   const showInputMoney = useRef<boolean>(false);
@@ -122,6 +130,8 @@ const Diamond: FC = () => {
     if (csrfToken) {
       fetchUserData();
     }
+    // load images
+      preloadImages();
   }, [csrfToken]);
 
   // Initialize tiles when totalTiles changes
