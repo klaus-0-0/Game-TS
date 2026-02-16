@@ -195,12 +195,17 @@ function ChipsAndBomb() {
         socket.on("invalid-move", msg => {
             console.warn(msg);
         });
+
+        socket.emit("player-move", {
+            roomId,
+            userId,
+            currentTurn: currentTurn
+        });
         
         socket.on("game-status", (winOrLoose) => {
             setWinOrLoose(winOrLoose);
             setGameActive(true);
             // console.log("winorloose", winOrLoose);
-
         });
 
         return () => {
@@ -212,15 +217,6 @@ function ChipsAndBomb() {
             socket.off("invalid-move");
         };
     }, []);
-
-useEffect(() => {
-  if (!roomId || !userId || !currentTurn) return; 
-  socket.emit("player-move", {
-    roomId,
-    userId,
-    currentTurn,
-  });
-}, [currentTurn]);
 
     useEffect(() => {
         socket.on("toss-result", (firstPlayer) => {
