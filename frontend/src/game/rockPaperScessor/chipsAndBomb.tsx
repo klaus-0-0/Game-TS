@@ -220,7 +220,7 @@ useEffect(() => {
     userId,
     currentTurn,
   });
-}, [roomId, userId, currentTurn]);
+}, [currentTurn]);
 
     useEffect(() => {
         socket.on("toss-result", (firstPlayer) => {
