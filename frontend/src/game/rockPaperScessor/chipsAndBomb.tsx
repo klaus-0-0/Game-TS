@@ -123,12 +123,19 @@ function ChipsAndBomb() {
 
     // LOAD USER
     useEffect(() => {
-        const userdata = () => {
-            const stored = localStorage.getItem("userData");
-            if (!stored) return;
-            const res = JSON.parse(stored);
-            setUserId(res.id);
-            setUserName(res.username);
+        const userdata = async () => {
+            try {
+                const res = await axios.get(
+                    `${config.apiUrl}/userAuth-data`,
+                    { withCredentials: true }
+                );
+                setUserId(res.data.userId);
+                setUserName(res.data.username);
+                console.log("dhsi", res);
+                
+            } catch (err) {
+                console.error("Failed to fetch user data", err);
+            }
         };
 
         userdata();
