@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { z } from "zod";
 import { doubleCsrfProtection, generateCsrfToken } from "../middleware/csrf.js";
 import { prisma } from "../lib/db.js";
+import { authMiddleware } from "../middleware/userAuthMiddleware.js";
 
 const router = Router();
 
@@ -71,7 +72,7 @@ router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
             });
 
             const token = jwt.sign(
-                { userId: newUser.id, role: newUser.role },
+                { userId: newUser.id, username: newUser.username, role: newUser.role },
                 process.env.TOKEN as string,
                 { expiresIn: "7d" }
             );
@@ -123,7 +124,7 @@ router.post("/login", doubleCsrfProtection,
             }
 
             const token = jwt.sign(
-                { userId: user.id, role: user.role },
+                { userId: user.id, username: user.username, role: user.role },
                 process.env.TOKEN as string,
                 { expiresIn: "7d" }
             );
@@ -151,6 +152,33 @@ router.post("/login", doubleCsrfProtection,
         }
     }
 );
+
+router.get("/userAuth-data", authMiddleware, (req: Request, res: Response) => {
+  const token = req.cookies.token;
+  console.log("token middleware:", token);
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    const secret = process.env.TOKEN!;
+    const decoded = jwt.verify(token, secret) as {
+      userId: string;
+      username: string;
+      role: string;
+    };
+
+    const userId = decoded.userId;    
+    const username = decoded.username;
+
+    console.log("userAuth-data", userId, username);
+
+    return res.status(200).json({ userId, username });
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+});
 
 /* ------------------ LOGOUT ------------------ */
 
